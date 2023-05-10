@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.CreateWithCode.Unit1
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] float speed = 20; // meters per second
-        [SerializeField] float turnSpeed = 0;
+        [SerializeField] private float speed = 20; // meters per second
+        [SerializeField] private float turnSpeed = 0;
 
-        float horizontalInput;
-        float forwardInput;
+        private float horizontalInput;
+        private float forwardInput;
 
-        void Update()
+        private void Update()
         {
             horizontalInput = Input.GetAxis("Horizontal");
             forwardInput = Input.GetAxis("Vertical");
