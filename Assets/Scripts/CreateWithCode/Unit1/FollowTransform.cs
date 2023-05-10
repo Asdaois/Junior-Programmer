@@ -8,7 +8,7 @@ namespace Assets.Scripts.CreateWithCode.Unit1
 
         private void LateUpdate()
         {
-            transform.position = target.position;
+            transform.SetPositionAndRotation(target.position, target.rotation);
         }
     }
 }
