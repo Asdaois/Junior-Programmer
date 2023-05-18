@@ -932,6 +932,7 @@ MonoBehaviour:
   defaultCameraPosition: {fileID: 534669906}
   alternativeCameraPosition: {fileID: 534669907}
   isDefault: 1
+  switchKey: 113
 --- !u!1001 &545531254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1947,6 +1948,7 @@ MonoBehaviour:
   defaultCameraPosition: {fileID: 1424718549}
   alternativeCameraPosition: {fileID: 1424718548}
   isDefault: 1
+  switchKey: 256
 --- !u!114 &1424718548
 MonoBehaviour:
   m_ObjectHideFlags: 0
