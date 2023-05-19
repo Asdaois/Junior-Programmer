@@ -20,18 +20,23 @@ namespace Assets.Scripts.CreateWithCode.Unit2
 
         [SerializeField] private List<GameObject> prefabs = new();
 
-        private void Update()
+        [SerializeField] private float startDelay = 2f;
+        [SerializeField] private float spawnInterval = 2f;
+
+        private void Start()
         {
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                var randomPosition = new Vector3(
-                    UnityEngine.Random.Range(boundX.min, boundX.max),
-                    0,
-                    UnityEngine.Random.Range(boundY.min, boundY.max)
-                    );
-                var randomAnimal = prefabs[UnityEngine.Random.Range(0, prefabs.Count)];
-                Instantiate(randomAnimal, randomPosition, randomAnimal.transform.rotation);
-            }
+            InvokeRepeating(nameof(SpawnAnimal), startDelay, spawnInterval);
+        }
+
+        private void SpawnAnimal()
+        {
+            var randomPosition = new Vector3(
+                UnityEngine.Random.Range(boundX.min, boundX.max),
+                0,
+                UnityEngine.Random.Range(boundY.min, boundY.max)
+                );
+            var randomAnimal = prefabs[UnityEngine.Random.Range(0, prefabs.Count)];
+            Instantiate(randomAnimal, randomPosition, randomAnimal.transform.rotation);
         }
     }
 }
