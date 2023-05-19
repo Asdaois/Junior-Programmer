@@ -5,17 +5,23 @@ namespace Assets.Scripts.CreateWithCode.Unit2
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float speed = 10f;
-        [SerializeField] private float horizontalInput;
 
-        [SerializeField] private float limitX = 15f;
+        [SerializeField] private Bounds limitX = new() { min = -15, max = 15 };
+        [SerializeField] private Bounds limitY;
 
         [SerializeField] private GameObject projectilePrefab;
+
+        private float horizontalInput;
+        private float verticalInput;
 
         private void Update()
         {
             horizontalInput = Input.GetAxis("Horizontal");
-            float velocity = speed * horizontalInput * Time.deltaTime;
-            transform.Translate(Vector3.right * velocity);
+            verticalInput = Input.GetAxis("Vertical");
+            float normalizedSpeed = speed * Time.deltaTime;
+            Vector3 direction = new(horizontalInput, transform.position.y, verticalInput);
+
+            transform.Translate(direction.normalized * normalizedSpeed);
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -25,21 +31,16 @@ namespace Assets.Scripts.CreateWithCode.Unit2
 
         private void LateUpdate()
         {
-            if (transform.position.x >= limitX)
-            {
-                ChangePositionX(limitX);
-            }
-
-            if (transform.position.x <= -limitX)
-            {
-                ChangePositionX(-limitX);
-            }
+            ClampPositionToBounds();
         }
 
-        private void ChangePositionX(float aPositionX)
+        private void ClampPositionToBounds()
         {
             transform.position = new Vector3(
-                aPositionX, transform.position.y, transform.position.z);
+                limitX.ClampValue(transform.position.x),
+                transform.position.y,
+                limitY.ClampValue(transform.position.z)
+                );
         }
     }
 }

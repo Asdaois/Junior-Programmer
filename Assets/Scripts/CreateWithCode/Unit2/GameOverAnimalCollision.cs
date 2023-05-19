@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.CreateWithCode.Unit2
 {
-    public class GameOverAnimalPass : MonoBehaviour
+    public class GameOverAnimalCollision : MonoBehaviour
     {
         private void OnTriggerEnter(Collider other)
         {
