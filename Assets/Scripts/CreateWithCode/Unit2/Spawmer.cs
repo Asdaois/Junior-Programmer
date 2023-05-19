@@ -16,7 +16,8 @@ namespace Assets.Scripts.CreateWithCode.Unit2
         [SerializeField] private float spawnInterval = 2f;
 
         [SerializeField] private Vector3 rotation = new(0, 180, 0);
-        [SerializeField] private bool addAgressiveBehaviour = false;
+
+        [SerializeField] private GameVariables gameVariables;
 
         private void Start()
         {
@@ -33,13 +34,6 @@ namespace Assets.Scripts.CreateWithCode.Unit2
             var randomAnimal = prefabs[Random.Range(0, prefabs.Count)];
 
             var go = Instantiate(randomAnimal, randomPosition, Quaternion.Euler(rotation));
-
-            if (addAgressiveBehaviour)
-            {
-                go.AddComponent<GameOverAnimalCollision>();
-                var gorb = go.AddComponent<Rigidbody>();
-                gorb.useGravity = false;
-            }
         }
     }
 }

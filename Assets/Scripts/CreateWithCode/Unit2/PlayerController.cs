@@ -11,6 +11,8 @@ namespace Assets.Scripts.CreateWithCode.Unit2
 
         [SerializeField] private GameObject projectilePrefab;
 
+        [SerializeField] private GameVariables gameVariables;
+
         private float horizontalInput;
         private float verticalInput;
 
@@ -25,8 +27,14 @@ namespace Assets.Scripts.CreateWithCode.Unit2
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+                var go = Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+                go.GetComponent<DestroyOnCollision>().OnDestroy += OnHitAnimal;
             }
+        }
+
+        private void OnHitAnimal()
+        {
+            gameVariables.IncreaseScore(1);
         }
 
         private void LateUpdate()
