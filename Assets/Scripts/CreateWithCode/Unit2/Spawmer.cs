@@ -20,7 +20,7 @@ namespace Assets.Scripts.CreateWithCode.Unit2
 
         [SerializeField] private List<GameObject> prefabs = new();
 
-        void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.S))
             {
