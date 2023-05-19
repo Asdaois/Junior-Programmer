@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroyOutOfBounds : MonoBehaviour
 {
-    [SerializeField] float bound = 30;
+    [SerializeField] private float bound = 30;
 
     private void Update()
     {

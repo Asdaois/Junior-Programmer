@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerControllerX : MonoBehaviour
 {
@@ -8,8 +6,7 @@ public class PlayerControllerX : MonoBehaviour
     public float rotationSpeed;
     public float verticalInput;
 
-
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         // get the user's vertical input
         verticalInput = Input.GetAxis("Vertical");
@@ -19,8 +16,8 @@ public class PlayerControllerX : MonoBehaviour
 
         if (verticalInput != 0)
         {
-        // tilt the plane up/down based on up/down arrow keys
-        transform.Rotate(verticalInput * rotationSpeed * Time.deltaTime * Vector3.right);
+            // tilt the plane up/down based on up/down arrow keys
+            transform.Rotate(verticalInput * rotationSpeed * Time.deltaTime * Vector3.right);
         }
     }
 }

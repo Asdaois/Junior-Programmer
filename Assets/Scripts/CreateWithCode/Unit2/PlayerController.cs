@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.CreateWithCode.Unit2
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] float speed = 10f;
-        [SerializeField] float horizontalInput;
+        [SerializeField] private float speed = 10f;
+        [SerializeField] private float horizontalInput;
 
-        [SerializeField] float limitX = 15f;
+        [SerializeField] private float limitX = 15f;
 
-        [SerializeField] GameObject projectilePrefab;
+        [SerializeField] private GameObject projectilePrefab;
 
-        void Update()
+        private void Update()
         {
             horizontalInput = Input.GetAxis("Horizontal");
             float velocity = speed * horizontalInput * Time.deltaTime;

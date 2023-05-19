@@ -1,34 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.CreateWithCode.Unit1
 {
     public class SwitchCamera : MonoBehaviour
     {
-        [SerializeField] FollowTransform defaultCameraPosition;
-        [SerializeField] FollowTransform alternativeCameraPosition;
-        [SerializeField]    bool isDefault = true;
-        [SerializeField] KeyCode switchKey;
+        [SerializeField] private FollowTransform defaultCameraPosition;
+        [SerializeField] private FollowTransform alternativeCameraPosition;
+        [SerializeField] private bool isDefault = true;
+        [SerializeField] private KeyCode switchKey;
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             defaultCameraPosition.enabled = true;
             alternativeCameraPosition.enabled = false;
-
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            if (Input.GetKeyUp(switchKey)) {
+            if (Input.GetKeyUp(switchKey))
+            {
                 Toggle();
             }
-
         }
 
-        void Toggle()
+        private void Toggle()
         {
             isDefault = !isDefault;
 
@@ -36,12 +33,12 @@ namespace Assets.Scripts.CreateWithCode.Unit1
             {
                 defaultCameraPosition.enabled = true;
                 alternativeCameraPosition.enabled = false;
-            } else
+            }
+            else
             {
                 defaultCameraPosition.enabled = false;
                 alternativeCameraPosition.enabled = true;
             }
         }
-
     }
 }
