@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-namespace Assets.Scripts.CreateWithCode.Unit3
+namespace CreateWithCode.Unit3
 {
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour
@@ -11,11 +12,13 @@ namespace Assets.Scripts.CreateWithCode.Unit3
         [SerializeField]
         private float gravityModifier = 1;
 
-        private Rigidbody playerRigidbody;
+        [SerializeField] private bool isOnGround = true;
+
+        private Rigidbody _playerRigidbody;
 
         private void Start()
         {
-            playerRigidbody = GetComponent<Rigidbody>();
+            _playerRigidbody = GetComponent<Rigidbody>();
             Physics.gravity *= gravityModifier;
         }
 
@@ -26,12 +29,18 @@ namespace Assets.Scripts.CreateWithCode.Unit3
 
         private void HandleJump()
         {
-            if (!Input.GetKeyDown(KeyCode.Space))
+            if (!Input.GetKeyDown(KeyCode.Space) || isOnGround == false)
             {
                 return;
             }
 
-            playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            _playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isOnGround = false;
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            isOnGround = true;
         }
     }
 }
