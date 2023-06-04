@@ -1,36 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SpawnManagerX : MonoBehaviour
+namespace Challenges.Challenge_2.Scripts
 {
-    public GameObject[] ballPrefabs;
-
-    private float spawnLimitXLeft = -22;
-    private float spawnLimitXRight = 7;
-    private float spawnPosY = 30;
-
-    private float startDelay = 1.0f;
-    private float minSpawnInterval = 3f;
-    private float maxSpawnInterval = 5f;
-
-    // Start is called before the first frame update
-    private void Start()
+    public class SpawnManagerX : MonoBehaviour
     {
-        Invoke(nameof(SpawnRandomBall), startDelay);
-    }
+        public GameObject[] ballPrefabs;
+        private const float MaxSpawnInterval = 5f;
+        private const float MinSpawnInterval = 3f;
 
-    // Spawn random ball at random x position at top of play area
-    private void SpawnRandomBall()
-    {
-        // Generate random ball index and random spawn position
-        Vector3 spawnPos = new(Random.Range(spawnLimitXLeft, spawnLimitXRight), spawnPosY, 0);
-        var randomIndex = Random.Range(0, ballPrefabs.Length);
+        private const float SpawnLimitXLeft = -22;
+        private const float SpawnLimitXRight = 7;
+        private const float SpawnPosY = 30;
 
-        // instantiate ball at random spawn location
-        Instantiate(ballPrefabs[randomIndex], spawnPos, ballPrefabs[randomIndex].transform.rotation);
+        private const float StartDelay = 1.0f;
 
-        float randomTime = Random.Range(minSpawnInterval, maxSpawnInterval);
-        Invoke(nameof(SpawnRandomBall), randomTime);
+        // Start is called before the first frame update
+        private void Start()
+        {
+            Invoke(nameof(SpawnRandomBall), StartDelay);
+        }
+
+        // Spawn random ball at random x position at top of play area
+        private void SpawnRandomBall()
+        {
+            // Generate random ball index and random spawn position
+            Vector3 spawnPos = new(Random.Range(SpawnLimitXLeft, SpawnLimitXRight), SpawnPosY, 0);
+            var randomIndex = Random.Range(0, ballPrefabs.Length);
+
+            // instantiate ball at random spawn location
+            Instantiate(ballPrefabs[randomIndex], spawnPos, ballPrefabs[randomIndex].transform.rotation);
+
+            var randomTime = Random.Range(MinSpawnInterval, MaxSpawnInterval);
+            Invoke(nameof(SpawnRandomBall), randomTime);
+        }
     }
 }

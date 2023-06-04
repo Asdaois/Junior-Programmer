@@ -1,30 +1,30 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class DestroyOutOfBounds : MonoBehaviour
+namespace CreateWithCode.Unit2
 {
-    [SerializeField] private float bound = 30;
-    [SerializeField] private Vector2 minimus = new(-30, -30);
-    [SerializeField] private Vector2 maximus = new(30, 30);
-
-    private void Update()
+    public class DestroyOutOfBounds : MonoBehaviour
     {
-        if (bound > 0 && transform.position.z > bound)
-        {
-            Destroy(gameObject);
-        }
+        [SerializeField] private float bound = 30;
+        [SerializeField] private Vector2 minimum = new(-30, -30);
+        [SerializeField] private Vector2 maximus = new(30, 30);
 
-        if (bound < 0 && transform.position.z < bound)
+        private void Update()
         {
-            Destroy(gameObject);
-        }
+            switch (bound)
+            {
+                case > 0 when transform.position.z > bound:
+                case < 0 when transform.position.z < bound:
+                    Destroy(gameObject);
+                    break;
+            }
 
-        var position = transform.position;
-        if (position.x > maximus.x
-            || position.x < minimus.x
-            || position.z > maximus.y
-            || position.z < minimus.y)
-        {
-            Destroy(gameObject);
+            var position = transform.position;
+            if (position.x > maximus.x
+                || position.x < minimum.x
+                || position.z > maximus.y
+                || position.z < minimum.y)
+                Destroy(gameObject);
         }
     }
 }

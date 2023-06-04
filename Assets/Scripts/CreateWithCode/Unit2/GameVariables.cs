@@ -1,14 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.CreateWithCode.Unit2
+namespace CreateWithCode.Unit2
 {
     [Serializable]
     public class ChangeValue : UnityEvent<int>
-    { }
+    {
+    }
 
     public class GameVariables : MonoBehaviour
     {

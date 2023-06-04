@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.CreateWithCode.Unit1
+namespace CreateWithCode.Unit1
 {
     public class FollowTransform : MonoBehaviour
     {

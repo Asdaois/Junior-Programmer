@@ -1,24 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DestroyOutOfBoundsX : MonoBehaviour
+namespace Challenges.Challenge_2.Scripts
 {
-    private readonly float bottomLimit = -5;
-    private readonly float leftLimit = -30;
-
-    // Update is called once per frame
-    private void Update()
+    public class DestroyOutOfBoundsX : MonoBehaviour
     {
-        // Destroy dogs if x position less than left limit
-        if (transform.position.x < leftLimit)
+        private const float BottomLimit = -5;
+        private const float LeftLimit = -30;
+
+        // Update is called once per frame
+        private void Update()
         {
-            Destroy(gameObject);
-        }
-        // Destroy balls if y position is less than bottomLimit
-        else if (transform.position.y < bottomLimit)
-        {
-            Destroy(gameObject);
+            // Destroy dogs if x position less than left limit
+            if (transform.position.x < LeftLimit)
+                Destroy(gameObject);
+            // Destroy balls if y position is less than bottomLimit
+            else if (transform.position.y < BottomLimit) Destroy(gameObject);
         }
     }
 }

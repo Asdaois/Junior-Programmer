@@ -1,23 +1,23 @@
 using UnityEngine;
 
-namespace Assets.Scripts.CreateWithCode.Unit1
+namespace CreateWithCode.Unit1
 {
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float speed = 20; // meters per second
-        [SerializeField] private float turnSpeed = 0;
+        [SerializeField] private float turnSpeed;
         [SerializeField] private string inputID;
+        private float _forwardInput;
 
-        private float horizontalInput;
-        private float forwardInput;
+        private float _horizontalInput;
 
         private void Update()
         {
-            horizontalInput = Input.GetAxis($"Horizontal{inputID}");
-            forwardInput = Input.GetAxis($"Vertical{inputID}");
+            _horizontalInput = Input.GetAxis($"Horizontal{inputID}");
+            _forwardInput = Input.GetAxis($"Vertical{inputID}");
 
-            transform.Translate(Vector3.forward * (Time.deltaTime * speed * forwardInput));
-            transform.Rotate(Vector3.up, Time.deltaTime * turnSpeed * horizontalInput);
+            transform.Translate(Vector3.forward * (Time.deltaTime * speed * _forwardInput));
+            transform.Rotate(Vector3.up, Time.deltaTime * turnSpeed * _horizontalInput);
         }
     }
 }

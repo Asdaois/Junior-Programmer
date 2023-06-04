@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 
-public class FollowPlayerX : MonoBehaviour
+namespace Challenges.Challenge_1.Scripts
 {
-    public GameObject plane;
-    [SerializeField] private Vector3 offset;
-
-    private void Update()
+    public class FollowPlayerX : MonoBehaviour
     {
-        transform.position = plane.transform.position + offset;
+        public GameObject plane;
+        [SerializeField] private Vector3 offset;
+
+        private void Update()
+        {
+            transform.position = plane.transform.position + offset;
+        }
     }
 }

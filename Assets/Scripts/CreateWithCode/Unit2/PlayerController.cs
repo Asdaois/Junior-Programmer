@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.CreateWithCode.Unit2
+namespace CreateWithCode.Unit2
 {
     public class PlayerController : MonoBehaviour
     {
@@ -13,28 +13,21 @@ namespace Assets.Scripts.CreateWithCode.Unit2
 
         [SerializeField] private GameVariables gameVariables;
 
-        private float horizontalInput;
-        private float verticalInput;
+        private float _horizontalInput;
+        private float _verticalInput;
 
         private void Update()
         {
-            horizontalInput = Input.GetAxis("Horizontal");
-            verticalInput = Input.GetAxis("Vertical");
-            float normalizedSpeed = speed * Time.deltaTime;
-            Vector3 direction = new(horizontalInput, transform.position.y, verticalInput);
+            _horizontalInput = Input.GetAxis("Horizontal");
+            _verticalInput = Input.GetAxis("Vertical");
+            var normalizedSpeed = speed * Time.deltaTime;
+            Vector3 direction = new(_horizontalInput, transform.position.y, _verticalInput);
 
             transform.Translate(direction.normalized * normalizedSpeed);
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                var go = Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
-                go.GetComponent<DestroyOnCollision>().OnDestroy += OnHitAnimal;
-            }
-        }
-
-        private void OnHitAnimal()
-        {
-            gameVariables.IncreaseScore(1);
+            if (!Input.GetKeyDown(KeyCode.Space)) return;
+            var go = Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+            go.GetComponent<DestroyOnCollision>().OnDestroy += OnHitAnimal;
         }
 
         private void LateUpdate()
@@ -42,13 +35,20 @@ namespace Assets.Scripts.CreateWithCode.Unit2
             ClampPositionToBounds();
         }
 
+        private void OnHitAnimal()
+        {
+            gameVariables.IncreaseScore(1);
+        }
+
         private void ClampPositionToBounds()
         {
-            transform.position = new Vector3(
-                limitX.ClampValue(transform.position.x),
-                transform.position.y,
-                limitY.ClampValue(transform.position.z)
-                );
+            var position = transform.position;
+            position = new Vector3(
+                limitX.ClampValue(position.x),
+                position.y,
+                limitY.ClampValue(position.z)
+            );
+            transform.position = position;
         }
     }
 }

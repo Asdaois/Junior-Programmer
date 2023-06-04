@@ -4,8 +4,8 @@ namespace CreateWithCode.Unit3
 {
     public class RepeatBackground : MonoBehaviour
     {
-        private Vector3 _startPosition;
         private float _repeatWidth;
+        private Vector3 _startPosition;
 
         private void Start()
         {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.CreateWithCode.Unit2
+namespace CreateWithCode.Unit2
 {
     public class AddRandomChild : MonoBehaviour
     {

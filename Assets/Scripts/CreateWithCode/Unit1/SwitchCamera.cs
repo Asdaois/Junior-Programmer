@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.CreateWithCode.Unit1
+namespace CreateWithCode.Unit1
 {
     public class SwitchCamera : MonoBehaviour
     {
@@ -19,10 +19,7 @@ namespace Assets.Scripts.CreateWithCode.Unit1
         // Update is called once per frame
         private void Update()
         {
-            if (Input.GetKeyUp(switchKey))
-            {
-                Toggle();
-            }
+            if (Input.GetKeyUp(switchKey)) Toggle();
         }
 
         private void Toggle()

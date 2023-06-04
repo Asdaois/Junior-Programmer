@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.CreateWithCode.Unit2
+namespace CreateWithCode.Unit2
 {
-    public partial class Spawmer : MonoBehaviour
+    public class Spawmer : MonoBehaviour
     {
         [SerializeField] private Bounds boundX;
         [SerializeField] private Bounds boundY;
@@ -15,9 +14,7 @@ namespace Assets.Scripts.CreateWithCode.Unit2
         [SerializeField] private float spawnInterval = 2f;
 
         [SerializeField] private Vector3 rotation = new(0, 180, 0);
-
-        [SerializeField] private GameVariables gameVariables;
-
+        
         private void Start()
         {
             InvokeRepeating(nameof(SpawnAnimal), startDelay, spawnInterval);
@@ -29,10 +26,10 @@ namespace Assets.Scripts.CreateWithCode.Unit2
                 Random.Range(boundX.min, boundX.max),
                 0,
                 Random.Range(boundY.min, boundY.max)
-                );
+            );
             var randomAnimal = prefabs[Random.Range(0, prefabs.Count)];
 
-            var go = Instantiate(randomAnimal, randomPosition, Quaternion.Euler(rotation));
+            Instantiate(randomAnimal, randomPosition, Quaternion.Euler(rotation));
         }
     }
 }

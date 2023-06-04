@@ -1,5 +1,3 @@
-using System;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace CreateWithCode.Unit3
@@ -7,15 +5,12 @@ namespace CreateWithCode.Unit3
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour
     {
-        
-        [SerializeField]
-        private float jumpForce = 10;
+        [SerializeField] private float jumpForce = 10;
 
-        [SerializeField]
-        private float gravityModifier = 1;
+        [SerializeField] private float gravityModifier = 1;
 
         [SerializeField] private bool isOnGround = true;
-        [field: SerializeField] public bool GameOver { get; private set; } = false;
+        [field: SerializeField] public bool GameOver { get; private set; }
 
         private Rigidbody _playerRigidbody;
 
@@ -30,21 +25,10 @@ namespace CreateWithCode.Unit3
             HandleJump();
         }
 
-        private void HandleJump()
-        {
-            if (!Input.GetKeyDown(KeyCode.Space) || isOnGround == false)
-            {
-                return;
-            }
-
-            _playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isOnGround = false;
-        }
-
         private void OnCollisionEnter(Collision other)
         {
             var colliderTag = other.collider.gameObject.tag;
-            
+
             Debug.Log(colliderTag);
             switch (colliderTag)
             {
@@ -56,6 +40,14 @@ namespace CreateWithCode.Unit3
                     GameOver = true;
                     break;
             }
+        }
+
+        private void HandleJump()
+        {
+            if (!Input.GetKeyDown(KeyCode.Space) || isOnGround == false) return;
+
+            _playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isOnGround = false;
         }
     }
 }

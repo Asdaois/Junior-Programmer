@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyOnCollision : MonoBehaviour
+namespace CreateWithCode.Unit2
 {
-    public delegate void DestroyEvent();
-
-    public event DestroyEvent OnDestroy;
-
-    private void OnTriggerEnter(Collider other)
+    public class DestroyOnCollision : MonoBehaviour
     {
-        Destroy(other.gameObject);
-        Destroy(gameObject);
+        public delegate void DestroyEvent();
 
-        OnDestroy?.Invoke();
+        private void OnTriggerEnter(Collider other)
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+
+            OnDestroy?.Invoke();
+        }
+
+        public event DestroyEvent OnDestroy;
     }
 }

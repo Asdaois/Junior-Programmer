@@ -1,6 +1,7 @@
 ﻿using System;
+using UnityEngine;
 
-namespace Assets.Scripts.CreateWithCode.Unit2
+namespace CreateWithCode.Unit2
 {
     [Serializable]
     public struct Bounds
@@ -10,7 +11,7 @@ namespace Assets.Scripts.CreateWithCode.Unit2
 
         public float ClampValue(float value)
         {
-            return UnityEngine.Mathf.Clamp(value, min, max);
+            return Mathf.Clamp(value, min, max);
         }
     }
 }

@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.CreateWithCode.Unit2
+namespace CreateWithCode.Unit2
 {
     [RequireComponent(typeof(ReduceLiveOnAnimalCollision))]
     public class NotifyOnLiveChangeWhenAnimalCollide : MonoBehaviour

@@ -1,22 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerControllerX : MonoBehaviour
+namespace Challenges.Challenge_2.Scripts
 {
-    public GameObject dogPrefab;
-
-    [SerializeField] private float fireRate = 0.8f;
-
-    private float lastShoot;
-
-    private void Update()
+    public class PlayerControllerX : MonoBehaviour
     {
-        var canShoot = Time.time - lastShoot > fireRate;
-        // On spacebar press, send dog
-        if (Input.GetKeyDown(KeyCode.Space) && canShoot)
+        public GameObject dogPrefab;
+
+        [SerializeField] private float fireRate = 0.8f;
+
+        private float _lastShoot;
+
+        private void Update()
         {
-            lastShoot = Time.time;
+            var canShoot = Time.time - _lastShoot > fireRate;
+            // On space bar press, send dog
+            if (!Input.GetKeyDown(KeyCode.Space) || !canShoot) return;
+            _lastShoot = Time.time;
             Instantiate(dogPrefab, transform.position, dogPrefab.transform.rotation);
         }
     }

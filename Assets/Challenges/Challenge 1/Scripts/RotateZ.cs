@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class RotateZ : MonoBehaviour
+namespace Challenges.Challenge_1.Scripts
 {
-    [SerializeField] private float rotationSpeed;
-
-    private void Update()
+    public class RotateZ : MonoBehaviour
     {
-        transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+        [SerializeField] private float rotationSpeed;
+
+        private void Update()
+        {
+            transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+        }
     }
 }

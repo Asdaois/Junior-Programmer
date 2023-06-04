@@ -1,14 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MoveForwardX : MonoBehaviour
+namespace Challenges.Challenge_2.Scripts
 {
-    public float speed;
-
-    // Update is called once per frame
-    void Update()
+    public class MoveForwardX : MonoBehaviour
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        public float speed;
+
+        // Update is called once per frame
+        private void Update()
+        {
+            transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+        }
     }
 }
