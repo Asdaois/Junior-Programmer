@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace CreateWithCode.Unit3
@@ -6,6 +7,7 @@ namespace CreateWithCode.Unit3
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerController : MonoBehaviour
     {
+        
         [SerializeField]
         private float jumpForce = 10;
 
@@ -13,6 +15,7 @@ namespace CreateWithCode.Unit3
         private float gravityModifier = 1;
 
         [SerializeField] private bool isOnGround = true;
+        [field: SerializeField] public bool GameOver { get; private set; } = false;
 
         private Rigidbody _playerRigidbody;
 
@@ -40,7 +43,19 @@ namespace CreateWithCode.Unit3
 
         private void OnCollisionEnter(Collision other)
         {
-            isOnGround = true;
+            var colliderTag = other.collider.gameObject.tag;
+            
+            Debug.Log(colliderTag);
+            switch (colliderTag)
+            {
+                case "Ground":
+                    isOnGround = true;
+                    break;
+                case "Obstacle":
+                    Debug.Log("Collide with obstacle");
+                    GameOver = true;
+                    break;
+            }
         }
     }
 }
