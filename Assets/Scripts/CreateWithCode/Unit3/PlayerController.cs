@@ -1,4 +1,7 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace CreateWithCode.Unit3
 {
@@ -14,14 +17,21 @@ namespace CreateWithCode.Unit3
 
         private Rigidbody _playerRigidbody;
 
+        [FormerlySerializedAs("onPlayerMove")] [SerializeField] private UnityEvent onPlayerRun;
+        [SerializeField] private UnityEvent onPlayerJump;
+        [SerializeField] private UnityEvent onPlayerDeath;
+
         private void Start()
         {
             _playerRigidbody = GetComponent<Rigidbody>();
             Physics.gravity *= gravityModifier;
+            onPlayerRun.Invoke();
         }
 
         private void Update()
         {
+            // Block every action on game over
+            if (GameOver) return;
             HandleJump();
         }
 
@@ -34,10 +44,12 @@ namespace CreateWithCode.Unit3
             {
                 case "Ground":
                     isOnGround = true;
+                    onPlayerRun.Invoke();
                     break;
                 case "Obstacle":
                     Debug.Log("Collide with obstacle");
                     GameOver = true;
+                    onPlayerDeath.Invoke();
                     break;
             }
         }
@@ -48,6 +60,7 @@ namespace CreateWithCode.Unit3
 
             _playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
+            onPlayerJump.Invoke();
         }
     }
 }
