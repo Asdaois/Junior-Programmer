@@ -1,34 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SpawnManagerX : MonoBehaviour
+namespace Challenges.Challenge_3.Scripts
 {
-    public GameObject[] objectPrefabs;
-    private float spawnDelay = 2;
-    private float spawnInterval = 1.5f;
-
-    private PlayerControllerX playerControllerScript;
-
-    // Start is called before the first frame update
-    void Start()
+    public class SpawnManagerX : MonoBehaviour
     {
-        InvokeRepeating("PrawnsObject", spawnDelay, spawnInterval);
-        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerControllerX>();
-    }
+        public GameObject[] objectPrefabs;
+        private const float SpawnDelay = 2;
+        private const float SpawnInterval = 1.5f;
 
-    // Spawn obstacles
-    void SpawnObjects ()
-    {
-        // Set random spawn location and random object index
-        Vector3 spawnLocation = new Vector3(30, Random.Range(5, 15), 0);
-        int index = Random.Range(0, objectPrefabs.Length);
+        private PlayerControllerX _playerControllerScript;
 
-        // If game is still active, spawn new object
-        if (!playerControllerScript.gameOver)
+        // Start is called before the first frame update
+        private void Start()
         {
-            Instantiate(objectPrefabs[index], spawnLocation, objectPrefabs[index].transform.rotation);
+            InvokeRepeating(nameof(SpawnObjects), SpawnDelay, SpawnInterval);
+            _playerControllerScript = GameObject.Find("Player").GetComponent<PlayerControllerX>();
         }
 
+        // Spawn obstacles
+        private void SpawnObjects ()
+        {
+            // Set random spawn location and random object index
+            var spawnLocation = new Vector3(30, Random.Range(5, 15), 0);
+            var index = Random.Range(0, objectPrefabs.Length);
+
+            // If game is still active, spawn new object
+            if (!_playerControllerScript.gameOver)
+            {
+                Instantiate(objectPrefabs[index], spawnLocation, objectPrefabs[index].transform.rotation);
+            }
+
+        }
     }
 }
