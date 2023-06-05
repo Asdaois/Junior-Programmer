@@ -6,12 +6,15 @@ namespace CreateWithCode.Unit3
     [RequireComponent(typeof(Animator))]
     public class PlayerAnimationController : MonoBehaviour
     {
+        [SerializeField] private ParticleSystem explosionParticles;
+        [SerializeField] private ParticleSystem dirtPlatterParticles;
         private Animator _animator;
         private static readonly int StaticB = Animator.StringToHash("Static_b");
         private static readonly int SpeedF = Animator.StringToHash("Speed_f");
         private static readonly int JumpTrigger = Animator.StringToHash("Jump_trig");
 
         private bool _isRuning;
+        private bool _isDeath;
         private static readonly int DeathTypeINT = Animator.StringToHash("DeathType_int");
         private static readonly int DeathB = Animator.StringToHash("Death_b");
 
@@ -36,18 +39,27 @@ namespace CreateWithCode.Unit3
             _animator.SetBool(StaticB, true);
             _animator.SetFloat(SpeedF, 0.6f);
             _animator.Play("Run_Static");
+
+            if (!_isDeath)
+                dirtPlatterParticles.Play();
         }
 
         public void ChangeToJumpAnimation()
         {
             _isRuning = false;
             _animator.SetTrigger(JumpTrigger);
+
+            dirtPlatterParticles.Stop();
         }
 
         public void ChangeToDeathAnimation()
         {
             _animator.SetInteger(DeathTypeINT, 1);
             _animator.SetBool(DeathB, true);
+
+            explosionParticles.Play();
+            dirtPlatterParticles.Stop();
+            _isDeath = true;
         }
     }
 }
