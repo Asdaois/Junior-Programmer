@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -17,15 +18,47 @@ namespace CreateWithCode.Unit3
 
         private Rigidbody _playerRigidbody;
 
-        [FormerlySerializedAs("onPlayerMove")] [SerializeField] private UnityEvent onPlayerRun;
+        [FormerlySerializedAs("onPlayerMove")] [SerializeField]
+        private UnityEvent onPlayerRun;
+
         [SerializeField] private UnityEvent onPlayerJump;
         [SerializeField] private UnityEvent onPlayerDeath;
+
+        private bool _isDoubleJumpEnabled;
+
+        private int _score = 0;
 
         private void Start()
         {
             _playerRigidbody = GetComponent<Rigidbody>();
             Physics.gravity *= gravityModifier;
             onPlayerRun.Invoke();
+
+            StartCoroutine(PlayIntro());
+        }
+
+        private IEnumerator PlayIntro()
+        {
+            GameOver = true;           
+            var startPosition = transform.position;
+            var endPosition = Vector3.zero;
+
+            var journeyLength = Vector3.Distance(startPosition, endPosition);
+
+            var startTime = Time.time;
+
+            var distanceCovered = (Time.time - startTime) * 1f;
+            var fractionOfJourney = distanceCovered / journeyLength;
+
+            while (fractionOfJourney < 1)
+            {
+                distanceCovered = (Time.time - startTime) * 1f;
+                fractionOfJourney = distanceCovered / journeyLength;
+                transform.position = Vector3.Lerp(startPosition, endPosition, fractionOfJourney);
+                yield return null;
+            }
+
+            GameOver = false;
         }
 
         private void Update()
@@ -33,6 +66,20 @@ namespace CreateWithCode.Unit3
             // Block every action on game over
             if (GameOver) return;
             HandleJump();
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                Time.timeScale = 1.5f;
+
+                _score += 2;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                _score += 1;
+            }
+
+            Debug.Log($"Score: {_score}");
         }
 
         private void OnCollisionEnter(Collision other)
@@ -44,6 +91,7 @@ namespace CreateWithCode.Unit3
             {
                 case "Ground":
                     isOnGround = true;
+                    _isDoubleJumpEnabled = true;
                     onPlayerRun.Invoke();
                     break;
                 case "Obstacle":
@@ -56,11 +104,22 @@ namespace CreateWithCode.Unit3
 
         private void HandleJump()
         {
-            if (!Input.GetKeyDown(KeyCode.Space) || isOnGround == false) return;
+            // Early Returns jump no posible
+            if (!Input.GetKeyDown(KeyCode.Space))
+                return;
+            if (isOnGround == false && _isDoubleJumpEnabled == false)
+                return;
 
+            // Jump
             _playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isOnGround = false;
             onPlayerJump.Invoke();
+
+            // Is Double Jump?
+            if (isOnGround == false)
+                _isDoubleJumpEnabled = false;
+
+            // Is definitively not in the ground
+            isOnGround = false;
         }
     }
 }

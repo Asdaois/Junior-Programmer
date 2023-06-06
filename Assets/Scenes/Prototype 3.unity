@@ -963,7 +963,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91406071e89652e6c823d2f97d28275e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 8018566408331380106, guid: d90ec7d3cce01714e9bf74d03e3e9cae, type: 3}
+  obstaclePrefabs:
+  - {fileID: 8018566408331380106, guid: d90ec7d3cce01714e9bf74d03e3e9cae, type: 3}
+  - {fileID: 8018566408331380106, guid: 5ae4906afef3e103987a4010aca21837, type: 3}
+  - {fileID: 8018566408331380106, guid: 5c88f17d4d404ba83abe6093bdd83914, type: 3}
+  - {fileID: 2596865239475445171, guid: 222dc08300c04032c90648a190e431d6, type: 3}
   startDelay: 2
   repeatDelay: 3
   leftBound: -30
@@ -1160,7 +1164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956712994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1229,8 +1233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea5aec1425922a4cb1cd88732988d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 550
-  gravityModifier: 1
+  jumpForce: 1200
+  gravityModifier: 5
   isOnGround: 1
   <GameOver>k__BackingField: 0
   onPlayerRun:
