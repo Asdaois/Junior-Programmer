@@ -10,10 +10,30 @@ namespace CreateWithCode.Unit4
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private int spawnRange = 9;
         [SerializeField] private int spawnHeight = 2;
+        private int _enemyNumbers = 1;
 
         private void Start()
         {
-            InvokeRepeating(nameof(SpawnEnemy), 0.5f, 4f);
+            // InvokeRepeating(nameof(SpawnEnemy), 0.5f, 4f);
+            SpawnEnemyWave();
+        }
+
+        private void Update()
+        {
+            if (FindObjectsOfType<DestroyOnFallOff>().Length == 0)
+            {
+                SpawnEnemyWave();
+            }
+        }
+
+        private void SpawnEnemyWave()
+        {
+            for (var i = 0; i < _enemyNumbers; i++)
+            {
+                SpawnEnemy();
+            }
+
+            _enemyNumbers++;
         }
 
         private void SpawnEnemy()
