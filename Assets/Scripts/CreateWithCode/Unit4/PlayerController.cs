@@ -63,7 +63,7 @@ namespace CreateWithCode.Unit4
         {
             yield return new WaitForSeconds(PowerUpTimer);
             _hasPowerUp = false;
-            powerupIndicator.SetActive(true);
+            powerupIndicator.SetActive(false);
             
             Debug.Log("PowerUp off");
         }
