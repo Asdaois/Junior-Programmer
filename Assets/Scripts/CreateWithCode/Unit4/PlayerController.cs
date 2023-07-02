@@ -27,7 +27,6 @@ namespace CreateWithCode.Unit4
         {
             var verticalInput = Input.GetAxis("Vertical");
 
-
             _rigidbody.AddForce(focalPoint.transform.forward * (verticalInput * speed));
         }
     }
