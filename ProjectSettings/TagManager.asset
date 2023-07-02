@@ -10,6 +10,8 @@ TagManager:
   - Money
   - Bomb
   - Background
+  - Powerup
+  - Enemy
   layers:
   - Default
   - TransparentFX
