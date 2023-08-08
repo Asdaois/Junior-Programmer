@@ -198,7 +198,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6393d3fa13d60956fa90de571b0af745, type: 2}
+  - {fileID: 2100000, guid: 4c97b24d72ebade4d98acaf3b75c90ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -354,8 +354,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3332286225687882211, guid: 4cf427c2596b5ef5d92baf7bfb3bf173, type: 3}
+  superEnemyPrefab: {fileID: 3332286225687882211, guid: c19ad8be6e52c7e5a9b0c922575af1bd, type: 3}
   spawnRange: 9
   spawnHeight: 2
+  spawnSuperEnemyRange:
+    min: 8
+    max: 12
 --- !u!1 &1052555001
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,8 +390,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1925233049850665091, guid: 2acaad43c91741afabfac05bd8a7d9e5, type: 3}
+  superEnemyPrefab: {fileID: 0}
   spawnRange: 9
   spawnHeight: 0
+  spawnSuperEnemyRange:
+    min: 0
+    max: 0
 --- !u!4 &1052555003
 Transform:
   m_ObjectHideFlags: 0

@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 095396963d83e25e8af09e3ae91852a8, type: 2}
+  - {fileID: 2100000, guid: e6e6f7a3c9f4839409af1eae15839382, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 4828478574283720177}
   - component: {fileID: 6615535628327172312}
   m_Layer: 6
-  m_Name: BallEnemyPersecutor
+  m_Name: BallEnemyTackler
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,8 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9148b77cf45cf3cca8cd795736c63277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  tackle: 0
+  speed: 15
+  tackle: 1
 --- !u!114 &6615535628327172312
 MonoBehaviour:
   m_ObjectHideFlags: 0
