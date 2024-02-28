@@ -168,3 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e325abbc3a1bf684bb23119139c482f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minSpeed: 12
+  maxSpeed: 16
+  maxTorque: 10
+  spawnPositionX: 4
+  spawnPositionY: -6
