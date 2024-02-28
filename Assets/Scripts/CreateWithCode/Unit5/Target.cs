@@ -3,11 +3,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Target : MonoBehaviour
 {
+    public GameManager gameManager;
+    [SerializeField] private int scorePoints;
     [SerializeField] private float minSpeed = 12;
     [SerializeField] private float maxSpeed = 16;
     [SerializeField] private float maxTorque = 10;
     [SerializeField] private float spawnPositionX = 4;
     [SerializeField] private float spawnPositionY = -2;
+
+    [SerializeField] private ParticleSystem particleExplosion;
 
     private Rigidbody _rb;
 
@@ -41,6 +45,12 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (gameManager != null)
+        {
+            gameManager.UpdateScore(scorePoints);
+        }
+
+        Instantiate(particleExplosion, transform.position, particleExplosion.transform.rotation);
         Destroy(gameObject);
     }
 
