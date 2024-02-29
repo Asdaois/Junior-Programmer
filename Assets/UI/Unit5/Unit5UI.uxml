@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 0; flex-direction: row; flex-shrink: 0; width: auto; left: 0; top: 0; padding-top: 50px; padding-left: 50px; color: rgb(255, 255, 255); -unity-font: url(&quot;project://database/Assets/Course%20Library/Fonts/Indie_Flower/IndieFlower.ttf?fileID=12800000&amp;guid=1e2dedf0209f94b3a970377b23a013a9&amp;type=3#IndieFlower&quot;); -unity-font-definition: initial; font-size: 60px; position: absolute;">
+        <ui:Label tabindex="-1" text="SCORE: " parse-escape-sequences="true" display-tooltip-when-elided="true" style="height: auto; width: auto; font-size: 60px;" />
+        <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LabelScoreValue" style="-unity-text-align: upper-center; -unity-font-style: bold; font-size: 60px;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="VisualElementGameOver" style="flex-grow: 1; position: relative; justify-content: center; align-items: center; overflow: visible; visibility: visible; margin-top: 0; -unity-font: url(&quot;project://database/Assets/Course%20Library/Fonts/Indie_Flower/IndieFlower.ttf?fileID=12800000&amp;guid=1e2dedf0209f94b3a970377b23a013a9&amp;type=3#IndieFlower&quot;);">
+        <ui:Label tabindex="-1" text="Game Over" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LabelGameOver" style="font-size: 80px; color: rgb(255, 0, 0); -unity-font: url(&quot;project://database/Assets/Course%20Library/Fonts/Indie_Flower/IndieFlower.ttf?fileID=12800000&amp;guid=1e2dedf0209f94b3a970377b23a013a9&amp;type=3#IndieFlower&quot;); -unity-font-definition: initial; -unity-font-style: bold;" />
+        <ui:Button text="Restart" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ButtonRestart" style="font-size: 60px;" />
+    </ui:VisualElement>
+</ui:UXML>

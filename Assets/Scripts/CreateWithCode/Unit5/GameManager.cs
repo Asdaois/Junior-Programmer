@@ -1,20 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
-[RequireComponent(typeof(HandleScoreUI))]
+[RequireComponent(typeof(HandleUI))]
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> targets;
 
-    private HandleScoreUI scoreHandler;
+    [SerializeField] private UIDocument document;
+
+    private HandleUI handlerUI;
     private readonly float spawnRate = 1;
     private int score = 0;
+    private bool isGameActive = false;
+
+    public bool IsGameActive { get => isGameActive; }
 
     private void Start()
     {
-        scoreHandler = GetComponent<HandleScoreUI>();
-        scoreHandler.UpdateScore(5);
+        var rootElement = document.rootVisualElement;
+        rootElement.Q<Button>("ButtonRestart").clicked += Restargame;
+        isGameActive = true;
+
+        handlerUI = GetComponent<HandleUI>();
         StartCoroutine(SpawnTarget());
     }
 
@@ -25,7 +35,7 @@ public class GameManager : MonoBehaviour
             throw new System.Exception("You need targets to run the game");
         }
 
-        while (true)
+        while (isGameActive)
         {
             yield return new WaitForSeconds(spawnRate);
 
@@ -39,9 +49,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Restargame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public void UpdateScore(int aScoreToAdd)
     {
         score += aScoreToAdd;
-        scoreHandler.UpdateScore(score);
+        handlerUI.UpdateScore(score);
+    }
+
+    internal void GameOver()
+    {
+        handlerUI.ShowGameOver();
+        isGameActive = false;
     }
 }

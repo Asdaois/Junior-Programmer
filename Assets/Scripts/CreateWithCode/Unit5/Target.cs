@@ -11,6 +11,7 @@ public class Target : MonoBehaviour
     [SerializeField] private float spawnPositionX = 4;
     [SerializeField] private float spawnPositionY = -2;
 
+    [SerializeField] private bool isGood;
     [SerializeField] private ParticleSystem particleExplosion;
 
     private Rigidbody _rb;
@@ -45,10 +46,8 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (gameManager != null)
-        {
-            gameManager.UpdateScore(scorePoints);
-        }
+        if (!gameManager.IsGameActive) { return; }
+        gameManager.UpdateScore(scorePoints);
 
         Instantiate(particleExplosion, transform.position, particleExplosion.transform.rotation);
         Destroy(gameObject);
@@ -56,6 +55,12 @@ public class Target : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
+        if (isGood)
+        {
+            gameManager.GameOver();
+        }
+
         Destroy(gameObject);
     }
 }
