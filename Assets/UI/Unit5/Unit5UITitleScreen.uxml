@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Unit5/Unit5Style.uss?fileID=7433441132597879392&amp;guid=8406f4cadc2fdea4e80c671891c2c5c1&amp;type=3#Unit5Style" />
+    <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Course%20Library/Fonts/Indie_Flower/IndieFlower.ttf?fileID=12800000&amp;guid=1e2dedf0209f94b3a970377b23a013a9&amp;type=3#IndieFlower&quot;); font-size: 80px; -unity-text-align: upper-center; -unity-font-style: bold;">
+        <ui:Label tabindex="-1" text="Clicky The Crate" parse-escape-sequences="true" display-tooltip-when-elided="true" style="align-items: center; justify-content: center;" />
+        <ui:VisualElement name="VisualElement" class="list" style="flex-grow: 0; flex-direction: row; flex-wrap: nowrap; justify-content: center; align-self: auto; align-items: flex-start; max-height: none; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Course%20Library/Fonts/Indie_Flower/IndieFlower.ttf?fileID=12800000&amp;guid=1e2dedf0209f94b3a970377b23a013a9&amp;type=3#IndieFlower&quot;); font-size: 60px; flex-shrink: 0;">
+            <ui:Button text="Easy" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ButtonEasy" style="-unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Course%20Library/Fonts/Indie_Flower/IndieFlower.ttf?fileID=12800000&amp;guid=1e2dedf0209f94b3a970377b23a013a9&amp;type=3#IndieFlower&quot;); background-color: rgb(144, 243, 19); color: rgb(0, 0, 0);" />
+            <ui:Button text="Medium" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ButtonMedium" style="background-color: rgb(255, 204, 0);" />
+            <ui:Button text="Hard" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ButtonHard" style="background-color: rgb(255, 27, 0); color: rgb(0, 0, 0);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -46,7 +46,7 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!gameManager.IsGameActive) { return; }
+        if (gameManager.CurrentGameState != GameManager.GameState.Playing) { return; }
         gameManager.UpdateScore(scorePoints);
 
         Instantiate(particleExplosion, transform.position, particleExplosion.transform.rotation);

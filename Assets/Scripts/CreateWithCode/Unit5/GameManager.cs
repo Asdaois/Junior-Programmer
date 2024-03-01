@@ -7,25 +7,35 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(HandleUI))]
 public class GameManager : MonoBehaviour
 {
+    public enum GameState
+    {
+        TitleScreen, Playing, GameOver
+    }
+
+    public enum Difficulty
+    {
+        Easy, Medium, Hard
+    }
+
     [SerializeField] private List<GameObject> targets;
 
     [SerializeField] private UIDocument document;
 
     private HandleUI handlerUI;
-    private readonly float spawnRate = 1;
+    private float spawnRate = 1;
     private int score = 0;
-    private bool isGameActive = false;
+    private Difficulty _currentDifficulty;
+    private GameState _gameState = GameState.TitleScreen;
 
-    public bool IsGameActive { get => isGameActive; }
+    public GameState CurrentGameState => _gameState;
 
     private void Start()
     {
         var rootElement = document.rootVisualElement;
         rootElement.Q<Button>("ButtonRestart").clicked += Restargame;
-        isGameActive = true;
 
         handlerUI = GetComponent<HandleUI>();
-        StartCoroutine(SpawnTarget());
+        handlerUI.TitleScreen();
     }
 
     private IEnumerator SpawnTarget()
@@ -35,7 +45,7 @@ public class GameManager : MonoBehaviour
             throw new System.Exception("You need targets to run the game");
         }
 
-        while (isGameActive)
+        while (_gameState == GameState.Playing)
         {
             yield return new WaitForSeconds(spawnRate);
 
@@ -63,6 +73,29 @@ public class GameManager : MonoBehaviour
     internal void GameOver()
     {
         handlerUI.ShowGameOver();
-        isGameActive = false;
+        _gameState = GameState.GameOver;
+    }
+
+    public void ChangeDifficulty(Difficulty aDifficulty)
+    {
+        _currentDifficulty = aDifficulty;
+        switch (_currentDifficulty)
+        {
+            case Difficulty.Easy:
+                spawnRate = 1;
+                break;
+
+            case Difficulty.Medium:
+                spawnRate = 0.75f;
+                break;
+
+            case Difficulty.Hard:
+                spawnRate = 0.5f;
+                break;
+        }
+
+        _gameState = GameState.Playing;
+        handlerUI.InitGame();
+        StartCoroutine(SpawnTarget());
     }
 }
