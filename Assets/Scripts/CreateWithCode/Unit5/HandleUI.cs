@@ -41,7 +41,7 @@ public class HandleUI : MonoBehaviour
 
     public void UpdateScore(int aScore)
     {
-        _labelScore.text = aScore.ToString();
+        _labelScore.text = $"Score: {aScore}";
     }
 
     public void TitleScreen()
