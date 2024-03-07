@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SphereSpawmer : MonoBehaviour
 {
@@ -31,5 +32,21 @@ public class SphereSpawmer : MonoBehaviour
         }
 
         arrowIndicator.transform.eulerAngles = new(_currentAngle, 0, 0);
+
+        if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
+        {
+            Debug.Log("Spawn ball");
+            var sphere = Instantiate(sphereObject);
+            sphere.transform.position = arrowIndicator.transform.position;
+
+            var sphereRB = sphere.GetComponent<Rigidbody>();
+
+            var forze = 10;
+            var angle = (90 + _currentAngle) * Mathf.Deg2Rad;
+            var forzeX = -Mathf.Cos(angle);
+            var forzeY = Mathf.Sin(angle);
+            Debug.Log($"{angle}, x: {forzeX}, y: {forzeY} ");
+            sphereRB.AddForce(new Vector3(0, forzeY * forze, forzeX * forze), ForceMode.Impulse);
+        }
     }
 }
