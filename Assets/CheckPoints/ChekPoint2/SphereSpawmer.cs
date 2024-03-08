@@ -12,10 +12,6 @@ public class SphereSpawmer : MonoBehaviour
     private float _speedFactor = 1f;
     private int _direction = 1;
 
-    private void Start()
-    {
-    }
-
     // Update is called once per frame
     private void Update()
     {
@@ -35,7 +31,6 @@ public class SphereSpawmer : MonoBehaviour
 
         if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
         {
-            Debug.Log("Spawn ball");
             var sphere = Instantiate(sphereObject);
             sphere.transform.position = arrowIndicator.transform.position;
 

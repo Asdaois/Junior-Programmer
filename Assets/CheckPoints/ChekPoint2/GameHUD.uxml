@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; color: rgb(255, 255, 255); -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Course%20Library/Fonts/Exo_2/Exo2-Bold.ttf?fileID=12800000&amp;guid=adcd00801f52c472c9b3615a7750a527&amp;type=3#Exo2-Bold&quot;); font-size: 50px; align-items: flex-start; justify-content: flex-end; padding-bottom: 16px; padding-left: 16px;">
+        <ui:Label tabindex="-1" text="SCORE: 0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LS" />
+        <ui:Label tabindex="-1" text="TIME: 60" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LT" />
+    </ui:VisualElement>
+</ui:UXML>
