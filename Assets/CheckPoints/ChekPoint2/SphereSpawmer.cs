@@ -40,7 +40,7 @@ public class SphereSpawmer : MonoBehaviour
             var angle = (90 + _currentAngle) * Mathf.Deg2Rad;
             var forzeX = -Mathf.Cos(angle);
             var forzeY = Mathf.Sin(angle);
-            Debug.Log($"{angle}, x: {forzeX}, y: {forzeY} ");
+
             sphereRB.AddForce(new Vector3(0, forzeY * forze, forzeX * forze), ForceMode.Impulse);
         }
     }

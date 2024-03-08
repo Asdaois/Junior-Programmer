@@ -899,8 +899,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnGameStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2022360262}
+        m_TargetAssemblyTypeName: GameManager, CheckPoint2
+        m_MethodName: StartGame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   HUDDocument: {fileID: 336341455}
+  MenuDocument: {fileID: 1127676388}
 --- !u!1 &658115677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,14 +1464,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953606996}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13960512, y: 0, z: 0, w: 0.99020725}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 216595745}
   m_Father: {fileID: 2135972078}
-  m_LocalEulerAnglesHint: {x: 16.05, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &961867306
 GameObject:
   m_ObjectHideFlags: 0
@@ -2364,6 +2377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIManager: {fileID: 622659191}
+  sphereSpawmer: {fileID: 2135972077}
 --- !u!4 &2022360263
 Transform:
   m_ObjectHideFlags: 0
@@ -2376,7 +2390,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2135972078}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2135679468
@@ -2512,13 +2527,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135972076}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 953606997}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2022360263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2142835147
 GameObject:
@@ -2636,6 +2651,5 @@ SceneRoots:
   - {fileID: 255629165}
   - {fileID: 658115681}
   - {fileID: 250417157}
-  - {fileID: 2135972078}
   - {fileID: 2022360263}
   - {fileID: 622659190}

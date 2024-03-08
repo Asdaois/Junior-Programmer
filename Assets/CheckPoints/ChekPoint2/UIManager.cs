@@ -4,8 +4,11 @@ using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
-    public UnityEvent<GameManager.Difficulty> OnGameStart;
+    [System.Serializable] public class UserChangeDifficultyEvent : UnityEvent<GameManager.Difficulty> { }
+
+    public UserChangeDifficultyEvent OnGameStart;
     [SerializeField] private UIDocument HUDDocument;
+    [SerializeField] private UIDocument MenuDocument;
 
     private Label labelScore;
 
@@ -14,15 +17,38 @@ public class UIManager : MonoBehaviour
         var HUDRoot = HUDDocument.rootVisualElement;
 
         labelScore = HUDRoot.Q<Label>("LS");
-    }
 
-    // Update is called once per frame
-    private void Update()
-    {
+        var MenuRoot = MenuDocument.rootVisualElement;
+
+        MenuRoot.Q<Button>("BE").clicked += () =>
+        {
+            Debug.Log("??");
+            OnGameStart.Invoke(GameManager.Difficulty.Easy);
+        }; ;
+        MenuRoot.Q<Button>("BM").clicked += () =>
+        {
+            OnGameStart.Invoke(GameManager.Difficulty.Medium);
+        };
+        MenuRoot.Q<Button>("BH").clicked += () =>
+        {
+            OnGameStart.Invoke(GameManager.Difficulty.Hard);
+        };
     }
 
     public void PresentScore(int aScore)
     {
         labelScore.text = $"SCORE: {aScore}";
+    }
+
+    public void ShowMenuScreen()
+    {
+        HUDDocument.enabled = false;
+        MenuDocument.enabled = true;
+    }
+
+    public void ShowHUDScreen()
+    {
+        HUDDocument.enabled = true;
+        MenuDocument.enabled = false;
     }
 }
