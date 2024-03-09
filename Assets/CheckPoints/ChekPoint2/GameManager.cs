@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SphereSpawmer sphereSpawmer;
     [SerializeField] private UIManager UIManager;
 
+    [SerializeField] private int originalGameTime = 0;
     private int gameTime = 0;
     private Timer gameTimer;
 
@@ -15,37 +16,64 @@ public class GameManager : MonoBehaviour
         Easy, Medium, Hard
     }
 
+    private Difficulty difficulty;
+
     public int Score { get => score; }
 
     public void AddScore(int aScore)
     {
         score += aScore;
         UIManager.PresentScore(score);
+
+        switch (difficulty)
+        {
+            case Difficulty.Easy:
+                break;
+
+            case Difficulty.Medium:
+                score += 1;
+                break;
+
+            case Difficulty.Hard:
+                score += 2;
+                break;
+        }
     }
 
     public void StartGame(Difficulty aDifficulty)
     {
-        Debug.Log($"Current difficulty is: {aDifficulty}");
+        difficulty = aDifficulty;
+        var spheres = GameObject.FindGameObjectsWithTag("Obstacle");
+        foreach (var sphere in spheres)
+        {
+            Destroy(sphere);
+        }
         UIManager.ShowHUDScreen();
         sphereSpawmer.enabled = true;
-        gameTime = 60;
+        gameTime = originalGameTime;
+        score = 0;
 
-        switch (aDifficulty)
+        if (Random.value >= 0.5f)
         {
-            case Difficulty.Easy:
-                sphereSpawmer.SpeedFactor = 0.5f;
-                break;
+            switch (aDifficulty)
+            {
+                case Difficulty.Easy:
+                    sphereSpawmer.SpeedFactor = 0.5f;
+                    break;
 
-            case Difficulty.Medium:
-                sphereSpawmer.SpeedFactor = 1f;
-                break;
+                case Difficulty.Medium:
+                    sphereSpawmer.SpeedFactor = 1f;
+                    break;
 
-            case Difficulty.Hard:
-                sphereSpawmer.SpeedFactor = 2f;
-                break;
+                case Difficulty.Hard:
+                    sphereSpawmer.SpeedFactor = 2f;
+                    break;
+            }
         }
 
         gameTimer.IsActive = true;
+        UIManager.PresentTime(gameTime);
+        UIManager.PresentScore(score);
     }
 
     private void Start()
@@ -57,7 +85,6 @@ public class GameManager : MonoBehaviour
 
     public void OnTime()
     {
-        Debug.Log(gameTime);
         gameTime--;
         UIManager.PresentTime(gameTime);
 
@@ -65,6 +92,7 @@ public class GameManager : MonoBehaviour
         {
             sphereSpawmer.enabled = false;
             UIManager.ShowMenuScreen();
+            gameTimer.IsActive = false;
         }
     }
 }

@@ -2379,6 +2379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sphereSpawmer: {fileID: 2135972077}
   UIManager: {fileID: 622659191}
+  originalGameTime: 20
 --- !u!4 &2022360263
 Transform:
   m_ObjectHideFlags: 0
@@ -2427,6 +2428,7 @@ MonoBehaviour:
   isOneShot: 0
   time: 1
   isActive: 0
+  _currentTime: 0
 --- !u!1 &2135679468
 GameObject:
   m_ObjectHideFlags: 0
