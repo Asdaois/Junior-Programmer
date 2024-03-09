@@ -2357,6 +2357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2022360263}
   - component: {fileID: 2022360262}
+  - component: {fileID: 2022360264}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2376,8 +2377,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bafaf04809fa074092dc7b71d9e2177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIManager: {fileID: 622659191}
   sphereSpawmer: {fileID: 2135972077}
+  UIManager: {fileID: 622659191}
 --- !u!4 &2022360263
 Transform:
   m_ObjectHideFlags: 0
@@ -2394,6 +2395,38 @@ Transform:
   - {fileID: 2135972078}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2022360264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022360261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca253ff75adb0f4aab00a6479cbc562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTimeOut:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2022360262}
+        m_TargetAssemblyTypeName: GameManager, CheckPoint2
+        m_MethodName: OnTime
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  name: Game Timer
+  autoStart: 0
+  isOneShot: 0
+  time: 1
+  isActive: 0
 --- !u!1 &2135679468
 GameObject:
   m_ObjectHideFlags: 0

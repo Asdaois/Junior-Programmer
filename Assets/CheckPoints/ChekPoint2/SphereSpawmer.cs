@@ -12,6 +12,8 @@ public class SphereSpawmer : MonoBehaviour
     private float _speedFactor = 1f;
     private int _direction = 1;
 
+    public float SpeedFactor { get => _speedFactor; set => _speedFactor = value; }
+
     // Update is called once per frame
     private void Update()
     {

@@ -11,12 +11,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UIDocument MenuDocument;
 
     private Label labelScore;
+    private Label labelTime;
 
     private void Start()
     {
         var HUDRoot = HUDDocument.rootVisualElement;
 
         labelScore = HUDRoot.Q<Label>("LS");
+        labelTime = HUDRoot.Q<Label>("LT");
 
         var MenuRoot = MenuDocument.rootVisualElement;
 
@@ -40,15 +42,20 @@ public class UIManager : MonoBehaviour
         labelScore.text = $"SCORE: {aScore}";
     }
 
+    public void PresentTime(int aTime)
+    {
+        labelTime.text = $"TIME: {aTime}";
+    }
+
     public void ShowMenuScreen()
     {
-        HUDDocument.enabled = false;
-        MenuDocument.enabled = true;
+        HUDDocument.rootVisualElement.visible = false;
+        MenuDocument.rootVisualElement.visible = true;
     }
 
     public void ShowHUDScreen()
     {
-        HUDDocument.enabled = true;
-        MenuDocument.enabled = false;
+        HUDDocument.rootVisualElement.visible = true;
+        MenuDocument.rootVisualElement.visible = false;
     }
 }
